@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viral Bangla - Best Entertainment</title>
+
+<!-- Popunder Ad Script -->
+<script src="https://pl29022521.profitablecpmratenetwork.com/70/24/19/70241930afb9647358ee6056132fd18a.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --red: #e8001d; --dark: #0a0a0a; --card: #141414; --border: #222; --text: #f0f0f0; --muted: #888; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Hind Siliguri', sans-serif; min-height: 100vh; }
+  nav { background: #000; border-bottom: 2px solid var(--red); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Noto Sans Bengali', sans-serif; font-size: 22px; font-weight: 900; color: #fff; }
+  .logo span { color: var(--red); }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .search-bar { background: #111; border: 1px solid var(--border); border-radius: 20px; display: flex; align-items: center; padding: 6px 12px; gap: 6px; }
+  .search-bar input { background: none; border: none; outline: none; color: #fff; font-family: 'Hind Siliguri', sans-serif; font-size: 13px; width: 130px; }
+  .search-bar input::placeholder { color: var(--muted); }
+  .btn-upload { background: var(--red); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-family: 'Hind Siliguri', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .stats-bar { background: #0d0d0d; border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .stat { font-size: 12px; color: var(--muted); }
+  .stat span { color: var(--red); font-weight: 700; }
+  .hero { background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 60%); padding: 30px 16px 20px; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-family: 'Noto Sans Bengali', sans-serif; font-size: 28px; font-weight: 900; line-height: 1.2; margin-bottom: 10px; }
+  .hero h1 span { color: var(--red); }
+  .hero p { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+  .hero-ad-btn { display: inline-block; background: var(--red); color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; }
+  .ad-strip { background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+  .ad-strip::-webkit-scrollbar { display: none; }
+  .ad-link { background: var(--red); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .categories { padding: 16px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); }
+  .categories::-webkit-scrollbar { display: none; }
+  .cat-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 20px; font-family: 'Hind Siliguri', sans-serif; font-size: 13px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+  .cat-btn:hover, .cat-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .cat-ad { display: flex; justify-content: center; padding: 10px 16px; background: #0d0d0d; border-bottom: 1px solid var(--border); }
+  .cat-ad a { background: linear-gradient(90deg, #e8001d, #ff4d00); color: #fff; padding: 8px 24px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 700; }
+  main { padding: 0; }
+  .section-title { font-size: 17px; font-weight: 700; margin: 12px 16px 8px; display: flex; align-items: center; gap: 8px; }
+  .section-title::before { content: ''; display: block; width: 4px; height: 20px; background: var(--red); border-radius: 2px; }
+  .video-grid { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .video-card { background: #000; overflow: hidden; border-bottom: 3px solid #111; cursor: pointer; }
+  .thumbnail { width: 100%; aspect-ratio: 16/9; background: #1a1a1a; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 80px; background: linear-gradient(135deg, #1a0a0a, #0a0a1a); }
+  .thumb-img { width: 100%; height: 100%; object-fit: cover; }
+  .play-btn { position: absolute; width: 70px; height: 70px; background: rgba(30,120,255,0.88); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 1; box-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+  .play-btn::after { content: ''; border-left: 26px solid #fff; border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 6px; }
+  .video-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 14px 14px; background: linear-gradient(transparent, rgba(0,0,0,0.88)); }
+  .video-info { padding: 0; }
+  .video-title { font-size: 15px; font-weight: 700; line-height: 1.4; color: #fff; }
+  .video-meta { display: flex; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px; }
+  .video-actions { display: flex; gap: 16px; padding: 10px 14px 12px; background: #0a0a0a; flex-wrap: wrap; border-bottom: 1px solid #1a1a1a; }
+  .action-btn { background: none; border: none; color: var(--muted); font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 3px; font-family: 'Hind Siliguri', sans-serif; transition: color 0.2s; padding: 0; }
+  .action-btn:hover { color: var(--red); }
+  .action-btn.liked { color: var(--red); }
+  .footer-ad { background: #0d0d0d; border-top: 1px solid var(--border); padding: 16px; text-align: center; }
+  .footer-ad a { background: linear-gradient(90deg, #e8001d, #ff4d00); color: #fff; padding: 10px 30px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 700; display: inline-block; }
+  .footer { background: #000; border-top: 1px solid var(--border); padding: 16px; text-align: center; color: var(--muted); font-size: 12px; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 999; align-items: center; justify-content: center; padding: 0; }
+  @media (min-width: 600px) { .modal-overlay { padding: 16px; } }
+  .modal-overlay.open { display: flex !important; }
+  .modal { background: #111; border: 1px solid #333; border-radius: 12px; padding: 24px; width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto; }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .modal-header h2 { font-size: 18px; font-weight: 700; }
+  .close-btn { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; padding: 0; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; background: #1a1a1a; border: 1px solid var(--border); border-radius: 8px; color: #fff; padding: 10px 12px; font-family: 'Hind Siliguri', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--red); }
+  .form-group select option { background: #1a1a1a; }
+  .form-group textarea { resize: vertical; }
+  .btn-submit { width: 100%; background: var(--red); color: #fff; border: none; padding: 12px; border-radius: 8px; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 6px; }
+  .player-wrap { width: 100%; height: 100%; max-width: 100%; background: #000; border-radius: 0; overflow: hidden; border: none; position: relative; display: flex; flex-direction: column; }
+  @media (min-width: 600px) { .player-wrap { width: 90%; height: auto; max-width: 700px; border-radius: 12px; border: 1px solid #333; } }
+  .player-header { padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; background: #111; flex-shrink: 0; }
+  .player-header span { font-size: 13px; font-weight: 600; }
+  .html5-player-wrap { flex: 1; position: relative; background: #000; display: flex; flex-direction: column; min-height: 0; }
+  .html5-player-wrap video { width: 100%; flex: 1; min-height: 0; display: block; background: #000; max-height: 55vw; object-fit: contain; }
+  .custom-controls { background: linear-gradient(transparent, rgba(0,0,0,0.95)); padding: 8px 12px 10px; flex-shrink: 0; }
+  .seek-bar-wrap { position: relative; height: 20px; display: flex; align-items: center; margin-bottom: 6px; cursor: pointer; }
+  .seek-bar-bg { width: 100%; height: 4px; background: #444; border-radius: 2px; position: relative; }
+  .seek-bar-fill { height: 100%; background: var(--red); border-radius: 2px; width: 0%; pointer-events: none; }
+  .seek-bar-input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; top: 0; left: 0; }
+  .controls-row { display: flex; align-items: center; gap: 8px; }
+  .ctrl-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 2px 4px; line-height: 1; }
+  .ctrl-btn:active { color: var(--red); }
+  .time-display { font-size: 11px; color: #ccc; flex: 1; white-space: nowrap; }
+  .volume-wrap { display: flex; align-items: center; gap: 4px; }
+  .volume-wrap input[type=range] { width: 55px; accent-color: var(--red); cursor: pointer; }
+  .speed-select { background: #222; border: 1px solid #444; color: #fff; font-size: 11px; border-radius: 4px; padding: 2px 4px; cursor: pointer; }
+  .fullscreen-btn { font-size: 18px; }
+  .comment-modal { background: #111; border: 1px solid var(--border); border-radius: 12px; padding: 20px; width: 100%; max-width: 420px; }
+  .comment-list { max-height: 220px; overflow-y: auto; margin: 12px 0; }
+  .comment-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .comment-item strong { color: var(--red); font-size: 12px; }
+  .comment-input-row { display: flex; gap: 8px; margin-top: 10px; }
+  .comment-input-row input { flex: 1; background: #1a1a1a; border: 1px solid var(--border); border-radius: 8px; color: #fff; padding: 8px 12px; font-family: 'Hind Siliguri', sans-serif; font-size: 13px; outline: none; }
+  .comment-input-row button { background: var(--red); color: #fff; border: none; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-size: 13px; font-weight: 600; }
+  .ad-screen { display:none; position:fixed; inset:0; background:#000; z-index:998; flex-direction:column; }
+  .ad-screen.open { display:flex !important; }
+  .ad-countdown { background:#111; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
+  .ad-countdown-circle { background:#e8001d; color:#fff; border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; }
+  .ad-bottom-bar { background:#111; padding:10px 16px; text-align:center; font-size:13px; color:#888; flex-shrink:0; }
+  .badge { background: var(--red); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; font-weight: 700; margin-left: 4px; }
+  @media (max-width: 500px) { .search-bar input { width: 100px; } .hero h1 { font-size: 22px; } }
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #000; border-top: 1px solid #222; display: flex; z-index: 200; }
+  .bottom-nav a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 0; color: #888; font-size: 10px; text-decoration: none; gap: 4px; }
+  .bottom-nav a.active { color: var(--red); }
+  .bottom-nav a span { font-size: 22px; }
+  .bottom-nav a.live-btn span { background: var(--red); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  body { padding-bottom: 60px; }
+  .video-title-badge { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.6); color: #fff; font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 6px; max-width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- TOP AD -->
+<div style="background:#0d0d0d;border-bottom:1px solid #222;padding:10px;text-align:center;">
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" style="background:linear-gradient(90deg,#e8001d,#ff4d00);color:#fff;padding:8px 24px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:700;">🔥 Special Offer — Click Here!</a>
+</div>
+
+<!-- Top Banner Ad -->
+<div style="background:#0d0d0d;border-bottom:1px solid #222;padding:8px;text-align:center;overflow:hidden;">
+<script>atOptions={'key':'6ac8733a6d6b5450ec119aafe6f8e359','format':'iframe','height':60,'width':468,'params':{}};</script>
+<script src="https://www.highperformanceformat.com/6ac8733a6d6b5450ec119aafe6f8e359/invoke.js"></script>
+</div>
+
+<nav>
+  <div class="logo">Viral <span>Bangla</span></div>
+  <div class="nav-right">
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Search videos..." id="searchInput" oninput="applyFilter()">
+    </div>
+    <button class="btn-upload" onclick="openUpload()">+ Upload</button>
+  </div>
+</nav>
+
+<!-- Ad Strip -->
+<div class="ad-strip">
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" class="ad-link">🔥 Special Offer</a>
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" class="ad-link">🎁 Free Gift</a>
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" class="ad-link">💰 Earn Money</a>
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" class="ad-link">⚡ Hot Videos</a>
+</div>
+
+<div class="stats-bar">
+  <div class="stat">Total Videos: <span id="totalVideos">0</span></div>
+  <div class="stat">Total Views: <span id="totalViews">0</span></div>
+  <div class="stat">Today's Videos: <span id="todayVideos">0</span></div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Bangladesh's <span>Best</span> Entertainment</h1>
+  <p>Viral Videos, Fun Content — All in One Place</p>
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" class="hero-ad-btn">🎬 Watch Exclusive Content</a>
+</div>
+
+<!-- Categories -->
+<div class="categories">
+  <button class="cat-btn active" onclick="filterCat('সব', this)">🎬 All</button>
+  <button class="cat-btn" onclick="filterCat('ফানি', this)">😂 Funny</button>
+  <button class="cat-btn" onclick="filterCat('নাটক', this)">🎭 Drama</button>
+  <button class="cat-btn" onclick="filterCat('গান', this)">🎵 Music</button>
+  <button class="cat-btn" onclick="filterCat('ভ্রমণ', this)">✈️ Travel</button>
+  <button class="cat-btn" onclick="filterCat('রান্না', this)">🍳 Cooking</button>
+  <button class="cat-btn" onclick="filterCat('খেলাধুলা', this)">⚽ Sports</button>
+  <button class="cat-btn" onclick="filterCat('টেক', this)">💻 Tech</button>
+</div>
+
+<!-- Cat Ad -->
+<div class="cat-ad">
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank">🔥 Today's Special — Click Here!</a>
+</div>
+
+<main>
+  <div class="section-title" id="sectionTitle">All Videos</div>
+  <div class="video-grid" id="videoGrid"><p class="empty-msg">লোড হচ্ছে...</p></div>
+
+  <!-- Bottom Ad (ভিডিও গ্রিডের নিচে) -->
+  <div style="text-align:center;padding:20px 0;">
+    <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" style="background:linear-gradient(90deg,#e8001d,#ff4d00);color:#fff;padding:10px 30px;border-radius:20px;text-decoration:none;font-size:14px;font-weight:700;display:inline-block;">🎬 Watch More Videos</a>
+  </div>
+</main>
+
+<!-- Footer Ad -->
+<div class="footer-ad">
+  <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank">🔥 Best Offer Today — Click Here!</a>
+</div>
+
+<!-- Bottom Banner Ad -->
+<div style="background:#0d0d0d;border-top:1px solid #222;padding:8px;text-align:center;overflow:hidden;">
+<script>atOptions={'key':'6ac8733a6d6b5450ec119aafe6f8e359','format':'iframe','height':60,'width':468,'params':{}};</script>
+<script src="https://www.highperformanceformat.com/6ac8733a6d6b5450ec119aafe6f8e359/invoke.js"></script>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  © 2024 Viral Bangla — All Rights Reserved
+</div>
+
+<!-- AD SCREEN -->
+<div id="adScreen" style="display:none;position:fixed;inset:0;background:#000;z-index:1100;flex-direction:column;align-items:center;justify-content:center;">
+  <div style="position:absolute;top:16px;right:16px;z-index:10;">
+    <span id="skipCountdown" style="background:#333;color:#aaa;padding:8px 16px;border-radius:6px;font-size:14px;display:inline-block;">⏳ <span id="countNum">5</span> সেকেন্ড</span>
+
+  </div>
+  <div style="text-align:center;padding:20px;width:100%;max-width:400px;">
+    <div style="font-size:52px;margin-bottom:14px;">📢</div>
+    <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;">বিজ্ঞাপন চলছে...</div>
+    <div style="font-size:13px;color:#888;margin-bottom:20px;">কিছুক্ষণ অপেক্ষা করুন, ভিডিও শুরু হবে</div>
+    <div style="background:#111;border-radius:12px;padding:16px;border:1px solid #222;min-height:90px;display:flex;align-items:center;justify-content:center;">
+      <a href="https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0" target="_blank" style="background:linear-gradient(90deg,#e8001d,#ff4d00);color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-size:15px;font-weight:700;display:inline-block;">🔥 Special Offer — এখনই দেখুন!</a>
+    </div>
+  </div>
+</div>
+
+<!-- AD OVERLAY -->
+<div id="adOverlay" style="display:none;position:fixed;inset:0;background:#000;z-index:1100;flex-direction:column;">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+    <iframe id="adIframe" src="" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- AD SCREEN -->
+<div class="ad-screen" id="adScreen">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;">
+    <div style="font-size:80px;font-weight:900;color:#e8001d;" id="adCountdown">4</div>
+    <div style="font-size:16px;color:#888;margin-top:10px;">⏳ ভিডিও লোড হচ্ছে...</div>
+  </div>
+  <div class="ad-bottom-bar">⏳ <span id="adCountdownText" style="color:#e8001d;font-weight:700;">4 সেকেন্ড</span> পর ভিডিও শুরু হবে...</div>
+</div>
+
+<!-- VIDEO PLAYER -->
+<div class="modal-overlay" id="videoPlayerModal">
+  <div class="player-wrap">
+    <div class="player-header">
+      <span id="videoPlayerTitle" style="max-width:80%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <button class="close-btn" onclick="closePlayer()">&#x2715;</button>
+    </div>
+    <!-- Custom HTML5 Player -->
+    <div class="html5-player-wrap" id="html5PlayerWrap" style="display:none;">
+      <video id="html5Video" preload="auto" playsinline></video>
+      <div class="custom-controls">
+        <div class="seek-bar-wrap">
+          <div class="seek-bar-bg"><div class="seek-bar-fill" id="seekFill"></div></div>
+          <input type="range" class="seek-bar-input" id="seekBar" min="0" max="100" value="0" step="0.1">
+        </div>
+        <div class="controls-row">
+          <button class="ctrl-btn" id="playPauseBtn" onclick="togglePlay()">&#9654;</button>
+          <button class="ctrl-btn" onclick="skipVideo(-10)">-10s</button>
+          <button class="ctrl-btn" onclick="skipVideo(10)">+10s</button>
+          <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+          <div class="volume-wrap">
+            <span style="font-size:13px;">Vol</span>
+            <input type="range" id="volumeBar" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)">
+          </div>
+          <select class="speed-select" onchange="setSpeed(this.value)">
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+          <button class="ctrl-btn fullscreen-btn" onclick="toggleFullscreen()">&#x26F6;</button>
+        </div>
+      </div>
+    </div>
+    <!-- Iframe Player -->
+    <iframe id="videoPlayerIframe" src="" width="100%" style="aspect-ratio:16/9;min-height:200px;border:none;display:block;flex:1;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>
+  </div>
+</div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal-overlay" id="passwordModal">
+  <div class="modal" style="max-width:360px;">
+    <div class="modal-header">
+      <h2>🔐 Admin Login</h2>
+      <button class="close-btn" onclick="closePasswordModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>পাসওয়ার্ড দিন</label>
+      <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড...">
+    </div>
+    <button class="btn-submit" onclick="checkPassword()">✅ প্রবেশ করুন</button>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📤 ভিডিও আপলোড</h2>
+      <button class="close-btn" onclick="closeUpload()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>ভিডিও সোর্স</label>
+      <select id="videoSource" onchange="toggleSource()">
+        <option value="direct">🎬 Direct MP4 URL</option>
+        <option value="terabox">📦 Terabox</option>
+        <option value="streamable">Streamable</option>
+        <option value="vimeo">🎬 Vimeo</option>
+        <option value="gdrive">📁 Google Drive</option>
+        <option value="jumpshare">🎬 Jumpshare</option>
+        <option value="archive">Archive.org</option>
+      </select>
+    </div>
+    <div class="form-group" id="directGroup">
+      <label>Direct Video URL * (যেমন: https://example.com/video.mp4)</label>
+      <input type="text" id="videoDirect" placeholder="https://...mp4 লিংক দিন...">
+    </div>
+    <div class="form-group" id="teraboxGroup" style="display:none">
+      <label>📦 Terabox Share লিংক * (যেমন: https://terabox.com/s/1xxxxx)</label>
+      <input type="text" id="videoTerabox" placeholder="Terabox শেয়ার লিংক দিন...">
+    </div>
+    <div class="form-group" id="streamableGroup" style="display:none">
+      <label>Streamable কোড * (যেমন: cmk5fj)</label>
+      <input type="text" id="videoStreamable" placeholder="Streamable কোড দিন...">
+    </div>
+    <div class="form-group" id="jumpshareGroup" style="display:none">
+      <label>Jumpshare Video ID *</label>
+      <input type="text" id="videoJumpshare" placeholder="Jumpshare লিংক বা ID দিন...">
+    </div>
+    <div class="form-group" id="vimeoGroup" style="display:none">
+      <label>Vimeo Video ID * (যেমন: 1191817401)</label>
+      <input type="text" id="videoVimeo" placeholder="Vimeo link বা ID দিন...">
+    </div>
+    <div class="form-group" id="gdriveGroup" style="display:none">
+      <label>Google Drive File ID *</label>
+      <input type="text" id="videoGdrive" placeholder="Google Drive File ID দিন...">
+    </div>
+    <div class="form-group" id="archiveGroup" style="display:none">
+      <label>Archive.org Identifier *</label>
+      <input type="text" id="videoArchive" placeholder="Archive identifier দিন...">
+    </div>
+    <div class="form-group">
+      <label>থাম্বনেইল URL (ছবির লিংক)</label>
+      <input type="text" id="videoThumb" placeholder="https://i.ibb.co/...">
+    </div>
+    <div class="form-group">
+      <label>ভিডিওর শিরোনাম *</label>
+      <input type="text" id="videoTitle" placeholder="ভিডিওর নাম লিখুন...">
+    </div>
+    <div class="form-group">
+      <label>ক্যাটাগরি</label>
+      <select id="videoCategory">
+        <option value="ফানি">😂 Funny</option>
+        <option value="নাটক">🎭 Drama</option>
+        <option value="গান">🎵 Music</option>
+        <option value="ভ্রমণ">✈️ Travel</option>
+        <option value="রান্না">🍳 Cooking</option>
+        <option value="খেলাধুলা">⚽ Sports</option>
+        <option value="টেক">💻 Tech</option>
+        <option value="অন্যান্য">🎬 Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>বিবরণ</label>
+      <textarea id="videoDesc" rows="2" placeholder="ভিডিও সম্পর্কে লিখুন..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="uploadVideo()">✅ আপলোড করুন</button>
+  </div>
+</div>
+
+<!-- COMMENT MODAL -->
+<div class="modal-overlay" id="commentModal">
+  <div class="comment-modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2 style="font-size:16px;font-weight:700;">💬 মন্তব্য</h2>
+      <button class="close-btn" onclick="closeComment()">✕</button>
+    </div>
+    <div id="commentVideoTitle" style="font-size:12px;color:var(--muted);margin-top:4px;"></div>
+    <div class="comment-list" id="commentList"></div>
+    <div class="comment-input-row">
+      <input type="text" id="commentInput" placeholder="মন্তব্য করুন...">
+      <button onclick="addComment()">পাঠান</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+const ADMIN_PASSWORD = '123456';
+const DIRECT_LINK = 'https://www.effectivecpmnetwork.com/bb3yg9xg?key=4eaae41ddf979b5a601cd0e0eaa675f0';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAZnh2ZnaQc6kI0EK9dE0qeWqyg-8xaTc8",
+  authDomain: "viral-bangla-fb545.firebaseapp.com",
+  databaseURL: "https://viral-bangla-fb545-default-rtdb.firebaseio.com",
+  projectId: "viral-bangla-fb545",
+  storageBucket: "viral-bangla-fb545.firebasestorage.app",
+  messagingSenderId: "814082883797",
+  appId: "1:814082883797:web:72ada3514d2ec8f8ff625c"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+let videos = [];
+let currentCat = 'সব';
+let currentVideoId = null;
+let adOpened = false;
+
+// Exit Intent Ad
+document.addEventListener('mouseleave', function(e) {
+  if(e.clientY <= 0 && !adOpened) {
+    adOpened = true;
+    window.open(DIRECT_LINK, '_blank');
+    setTimeout(() => { adOpened = false; }, 30000);
+  }
+});
+
+// Mobile exit intent (back button / visibility change)
+document.addEventListener('visibilitychange', function() {
+  if(document.visibilityState === 'hidden' && !adOpened) {
+    adOpened = true;
+    setTimeout(() => { adOpened = false; }, 30000);
+  }
+});
+
+
+const sharedVidParam = new URLSearchParams(window.location.search).get('v');
+
+db.ref('videos').on('value', (snapshot) => {
+  videos = [];
+  snapshot.forEach((child) => {
+    videos.unshift({ firebaseId: child.key, ...child.val() });
+  });
+
+  // শেয়ার লিংক দিয়ে আসলে শুধু সেই ভিডিও দেখাবে
+  if (sharedVidParam) {
+    const found = videos.find(x => x.firebaseId === sharedVidParam);
+    if (found) {
+      // ক্যাটাগরি, সার্চ, স্ট্যাটস লুকাও
+      document.querySelector('.categories').style.display = 'none';
+      document.querySelector('.cat-ad').style.display = 'none';
+      document.querySelector('.stats-bar').style.display = 'none';
+      document.querySelector('.hero').style.display = 'none';
+      document.getElementById('sectionTitle').textContent = '🎬 ভিডিও';
+      // শুধু একটা ভিডিও দেখাও
+      renderVideos([found]);
+    } else {
+      document.getElementById('videoGrid').innerHTML = '<p class="empty-msg">⚠️ ভিডিও পাওয়া যায়নি!</p>';
+    }
+  } else {
+    applyFilter();
+  }
+});
+
+function formatNum(n) {
+  if(n >= 1000000) return (n/1000000).toFixed(1)+'M';
+  if(n >= 1000) return (n/1000).toFixed(1)+'K';
+  return n || 0;
+}
+
+function getThumb(v) {
+  if(v.thumb) return `<img class="thumb-img" src="${v.thumb}" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder>${v.emoji||'🎬'}</div>'">`;
+  if(v.source==='terabox' && v.terabox) return `<div class="thumb-placeholder">📦</div>`;
+  if(v.source==='archive' && v.archive) return `<img class="thumb-img" src="https://archive.org/services/img/${v.archive}" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder>🎬</div>'">`;
+  if(v.source==='gdrive' && v.gdrive) return `<div class="thumb-placeholder">📁</div>`;
+  if(v.streamable) return `<img class="thumb-img" src="https://cdn-cf-east.streamable.com/image/${v.streamable}.jpg" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder>🎬</div>'">`;
+  return `<div class="thumb-placeholder">${v.emoji||'🎬'}</div>`;
+}
+
+function renderVideos(list) {
+  const grid = document.getElementById('videoGrid');
+  if(!list || list.length === 0) {
+    grid.innerHTML = '<p class="empty-msg">কোনো ভিডিও পাওয়া যায়নি</p>';
+    updateStats(); return;
+  }
+  const sharedVid = new URLSearchParams(window.location.search).get('v');
+  grid.innerHTML = list.map(v => `
+    <div class="video-card" id="card-${v.firebaseId}">
+      <div class="thumbnail" onclick="handleVideoClick('${v.firebaseId}')">
+        ${getThumb(v)}
+        <div class="play-btn"></div>
+        <div class="video-title-badge">${v.title||'Untitled'}</div>
+        ${sharedVid === v.firebaseId ? '<div style="position:absolute;top:12px;right:12px;background:#e8001d;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;">🔗 শেয়ার করা ভিডিও</div>' : ''}
+        <div class="video-overlay">
+          <div class="video-meta">
+            <span>📁 ${v.category||'Other'}</span>
+            <span>👁️ ${formatNum(v.views)} ভিউ</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-actions">
+        <button class="action-btn ${v.liked?'liked':''}" onclick="toggleLike('${v.firebaseId}')">❤️ ${formatNum(v.likes)}</button>
+        <button class="action-btn" onclick="openComment('${v.firebaseId}')">💬 ${v.commentCount||0}</button>
+        <button class="action-btn" onclick="shareVideo('${v.firebaseId}')">🔗 Share</button>
+        <button class="action-btn" onclick="downloadVideo('${v.firebaseId}')">⬇️ Download</button>
+        <button class="action-btn" onclick="deleteVideo('${v.firebaseId}')" style="color:#ff4444;">🗑️ Delete</button>
+      </div>
+    </div>
+  `).join('');
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('totalVideos').textContent = videos.length;
+  document.getElementById('totalViews').textContent = formatNum(videos.reduce((s,v)=>s+(v.views||0),0));
+  const today = new Date().toDateString();
+  document.getElementById('todayVideos').textContent = videos.filter(v => new Date(v.time).toDateString()===today).length;
+}
+
+function filterCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('sectionTitle').textContent = cat==='সব' ? 'All Videos' : cat+' Videos';
+  applyFilter();
+}
+
+function applyFilter() {
+  const q = (document.getElementById('searchInput').value||'').toLowerCase();
+  let list = videos;
+  if(currentCat !== 'সব') list = list.filter(v => v.category===currentCat);
+  if(q) list = list.filter(v => (v.title||'').toLowerCase().includes(q));
+  renderVideos(list);
+}
+
+let adCountdownTimer = null;
+let pendingPlayId = null;
+
+function handleVideoClick(fid) {
+  pendingPlayId = fid;
+  // এড নতুন ট্যাবে খুলবে
+  window.open(DIRECT_LINK, '_blank');
+  // কাউন্টডাউন স্ক্রিন দেখাও
+  document.getElementById('adScreenIframe').src = '';
+  document.getElementById('adScreen').classList.add('open');
+  document.getElementById('adCountdown').textContent = '4';
+  document.getElementById('adCountdownText').textContent = '4 সেকেন্ড';
+
+  let count = 4;
+  if(adCountdownTimer) clearInterval(adCountdownTimer);
+  adCountdownTimer = setInterval(() => {
+    count--;
+    document.getElementById('adCountdown').textContent = count;
+    document.getElementById('adCountdownText').textContent = count + ' সেকেন্ড';
+    if(count <= 0) {
+      clearInterval(adCountdownTimer);
+      document.getElementById('adScreen').classList.remove('open');
+      if(pendingPlayId) {
+        playVideo(pendingPlayId);
+        pendingPlayId = null;
+      }
+    }
+  }, 1000);
+}
+
+function playVideo(fid) {
+  const v = videos.find(x => x.firebaseId===fid);
+  if(!v) return;
+  db.ref('videos/'+fid).update({ views: (v.views||0)+1 });
+  document.getElementById('videoPlayerTitle').textContent = v.title;
+
+  const html5Wrap = document.getElementById('html5PlayerWrap');
+  const iframe = document.getElementById('videoPlayerIframe');
+  const video = document.getElementById('html5Video');
+
+  if(v.source==='direct' && v.direct) {
+    // Custom HTML5 Player
+    iframe.style.display = 'none';
+    iframe.src = '';
+    html5Wrap.style.display = 'flex';
+    html5Wrap.style.flexDirection = 'column';
+    video.src = v.direct;
+    video.load();
+    video.play();
+    document.getElementById('videoPlayerModal').classList.add('open');
+  } else if(v.source==='terabox' && v.terabox) {
+    // Terabox - নতুন ট্যাবে খুলবে
+    window.open('https://www.terabox.com/s/'+v.terabox, '_blank');
+    return;
+  } else if(v.source==='jumpshare' && v.jumpshare) {
+    // Jumpshare iframe এ full screen দেখানো
+    html5Wrap.style.display = 'none';
+    video.pause();
+    video.src = '';
+    iframe.style.display = 'block';
+    iframe.style.transform = '';
+    iframe.style.transformOrigin = '';
+    iframe.src = 'https://jumpshare.com/embed/'+v.jumpshare;
+    document.getElementById('videoPlayerModal').classList.add('open');
+  } else {
+    // Iframe Player
+    html5Wrap.style.display = 'none';
+    video.pause();
+    video.src = '';
+    iframe.style.display = 'block';
+    let url = '';
+    if(v.source==='gdrive' && v.gdrive) url = `https://drive.google.com/file/d/${v.gdrive}/preview`;
+    else if(v.source==='archive' && v.archive) url = `https://archive.org/embed/${v.archive}`;
+    else if(v.source==='vimeo' && v.vimeo) url = `https://player.vimeo.com/video/${v.vimeo}?autoplay=1`;
+    else if(v.streamable) url = `https://streamable.com/e/${v.streamable}?autoplay=1`;
+    if(url) {
+      iframe.src = url;
+      document.getElementById('videoPlayerModal').classList.add('open');
+    } else {
+      alert('⚠️ ভিডিও URL পাওয়া যায়নি!');
+    }
+  }
+}
+
+function closePlayer() {
+  document.getElementById('videoPlayerModal').classList.remove('open');
+  const iframe = document.getElementById('videoPlayerIframe');
+  iframe.src = '';
+  iframe.style.transform = '';
+  const video = document.getElementById('html5Video');
+  video.pause();
+  video.src = '';
+}
+
+function toggleLike(fid) {
+  const v = videos.find(x => x.firebaseId===fid);
+  if(!v) return;
+  v.liked = !v.liked;
+  db.ref('videos/'+fid).update({ likes: Math.max(0,(v.likes||0)+(v.liked?1:-1)) });
+}
+
+function shareVideo(fid) {
+  const v = videos.find(x => x.firebaseId===fid);
+  if(!v) return;
+  const url = window.location.href.split('?')[0]+'?v='+fid;
+  if(navigator.share) navigator.share({ title: v.title, url: url });
+  else navigator.clipboard.writeText(url).then(() => alert('✅ লিংক কপি হয়েছে!'));
+}
+
+function downloadVideo(fid) {
+  const v = videos.find(x => x.firebaseId===fid);
+  if(!v) return;
+  // এড আগে খুলবে
+  window.open(DIRECT_LINK, '_blank');
+  // তারপর ভিডিও লিংক খুলবে
+  setTimeout(() => {
+    if(v.source==='terabox' && v.terabox) window.open('https://www.terabox.com/s/'+v.terabox,'_blank');
+    else if(v.source==='jumpshare' && v.jumpshare) window.open('https://jumpshare.com/share/'+v.jumpshare,'_blank');
+    else if(v.source==='gdrive' && v.gdrive) window.open('https://drive.google.com/file/d/'+v.gdrive+'/view','_blank');
+    else if(v.source==='archive' && v.archive) window.open('https://archive.org/details/'+v.archive,'_blank');
+    else if(v.streamable) window.open('https://streamable.com/'+v.streamable,'_blank');
+  }, 500);
+}
+
+function deleteVideo(fid) {
+  const pass = prompt('🔐 পাসওয়ার্ড দিন:');
+  if(pass !== ADMIN_PASSWORD) { alert('❌ ভুল পাসওয়ার্ড!'); return; }
+  if(!confirm('এই ভিডিও ডিলিট করবেন?')) return;
+  db.ref('videos/'+fid).remove().then(() => {
+    alert('✅ ভিডিও ডিলিট হয়েছে!');
+  }).catch(err => { alert('❌ সমস্যা: '+err.message); });
+}
+
+function openComment(fid) {
+  currentVideoId = fid;
+  const v = videos.find(x => x.firebaseId===fid);
+  document.getElementById('commentVideoTitle').textContent = v ? v.title : '';
+  loadComments(fid);
+  document.getElementById('commentModal').classList.add('open');
+}
+
+function closeComment() {
+  document.getElementById('commentModal').classList.remove('open');
+  currentVideoId = null;
+}
+
+function loadComments(fid) {
+  db.ref('comments/'+fid).once('value', (snapshot) => {
+    const list = document.getElementById('commentList');
+    if(!snapshot.exists()) {
+      list.innerHTML = '<p style="color:var(--muted);font-size:13px;text-align:center;padding:16px;">এখনো কোনো মন্তব্য নেই</p>';
+      return;
+    }
+    let html = '';
+    snapshot.forEach(child => {
+      const c = child.val();
+      html += `<div class="comment-item"><strong>👤 দর্শক</strong><br>${c.text}</div>`;
+    });
+    list.innerHTML = html;
+  });
+}
+
+function addComment() {
+  const input = document.getElementById('commentInput');
+  const text = (input.value||'').trim();
+  if(!text || !currentVideoId) return;
+  db.ref('comments/'+currentVideoId).push({ text, time: Date.now() });
+  const v = videos.find(x => x.firebaseId===currentVideoId);
+  if(v) db.ref('videos/'+currentVideoId).update({ commentCount: (v.commentCount||0)+1 });
+  input.value = '';
+  setTimeout(() => loadComments(currentVideoId), 500);
+}
+
+function openUpload() {
+  document.getElementById('passwordModal').classList.add('open');
+}
+
+function closePasswordModal() {
+  document.getElementById('passwordModal').classList.remove('open');
+  document.getElementById('passwordInput').value = '';
+}
+
+function checkPassword() {
+  const pass = document.getElementById('passwordInput').value;
+  if(pass === ADMIN_PASSWORD) {
+    closePasswordModal();
+    document.getElementById('uploadModal').classList.add('open');
+  } else {
+    alert('❌ ভুল পাসওয়ার্ড!');
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+function closeUpload() {
+  document.getElementById('uploadModal').classList.remove('open');
+}
+
+function toggleSource() {
+  const src = document.getElementById('videoSource').value;
+  document.getElementById('directGroup').style.display = src==='direct' ? 'block' : 'none';
+  document.getElementById('teraboxGroup').style.display = src==='terabox' ? 'block' : 'none';
+  document.getElementById('streamableGroup').style.display = src==='streamable' ? 'block' : 'none';
+  document.getElementById('vimeoGroup').style.display = src==='vimeo' ? 'block' : 'none';
+  document.getElementById('gdriveGroup').style.display = src==='gdrive' ? 'block' : 'none';
+  document.getElementById('jumpshareGroup').style.display = src==='jumpshare' ? 'block' : 'none';
+  document.getElementById('archiveGroup').style.display = src==='archive' ? 'block' : 'none';
+}
+
+function uploadVideo() {
+  const source = document.getElementById('videoSource').value;
+  const title = (document.getElementById('videoTitle').value||'').trim();
+  const category = document.getElementById('videoCategory').value;
+  const desc = (document.getElementById('videoDesc').value||'').trim();
+  const thumb = (document.getElementById('videoThumb').value||'').trim();
+  if(!title) { alert('⚠️ শিরোনাম দিন!'); return; }
+  const emojis = { ফানি:'😂', নাটক:'🎭', গান:'🎵', ভ্রমণ:'✈️', রান্না:'🍳', খেলাধুলা:'⚽', টেক:'💻', অন্যান্য:'🎬' };
+  let data = { title, category, desc, thumb, emoji: emojis[category]||'🎬', views:0, likes:0, commentCount:0, time:Date.now(), source };
+
+  if(source==='direct') {
+    const direct = (document.getElementById('videoDirect').value||'').trim();
+    if(!direct) { alert('⚠️ Direct Video URL দিন!'); return; }
+    data.direct = direct;
+    data.streamable = ''; data.gdrive = ''; data.archive = ''; data.jumpshare = ''; data.terabox = '';
+  } else if(source==='terabox') {
+    let terabox = (document.getElementById('videoTerabox').value||'').trim();
+    if(!terabox) { alert('⚠️ Terabox লিংক দিন!'); return; }
+    // Extract share ID from terabox URL
+    const match = terabox.match(/terabox\.com\/s\/([a-zA-Z0-9_-]+)/);
+    if(match) terabox = match[1];
+    data.terabox = terabox;
+    data.direct = ''; data.streamable = ''; data.gdrive = ''; data.archive = ''; data.jumpshare = '';
+  } else if(source==='jumpshare') {
+    let jumpshare = (document.getElementById('videoJumpshare').value||'').trim();
+    const match = jumpshare.match(/jumpshare\.com\/(?:share|embed|v)\/([a-zA-Z0-9]+)/);
+    if(match) jumpshare = match[1];
+    if(!jumpshare) { alert('⚠️ Jumpshare ID দিন!'); return; }
+    data.jumpshare = jumpshare;
+    data.streamable = ''; data.gdrive = ''; data.archive = '';
+  } else if(source==='gdrive') {
+    let gdrive = (document.getElementById('videoGdrive').value||'').trim();
+    const match = gdrive.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if(match) gdrive = match[1];
+    if(!gdrive) { alert('⚠️ Google Drive File ID দিন!'); return; }
+    data.gdrive = gdrive;
+    data.streamable = ''; data.archive = '';
+  } else if(source==='archive') {
+    const archive = (document.getElementById('videoArchive').value||'').trim();
+    if(!archive) { alert('⚠️ Archive Identifier দিন!'); return; }
+    data.archive = archive;
+    data.streamable = ''; data.gdrive = '';
+  } else if(source==='vimeo') {
+    let vimeo = (document.getElementById('videoVimeo').value||'').trim();
+    vimeo = vimeo.replace(/.*vimeo\.com\//,'').split('?')[0].split('/')[0].trim();
+    if(!vimeo) { alert('⚠️ Vimeo ID দিন!'); return; }
+    data.vimeo = vimeo;
+    data.streamable = ''; data.gdrive = ''; data.archive = ''; data.jumpshare = '';
+  } else {
+    const raw = (document.getElementById('videoStreamable').value||'').trim();
+    if(!raw) { alert('⚠️ Streamable কোড দিন!'); return; }
+    data.streamable = raw.replace(/https?:\/\/(www\.)?streamable\.com\//,'').trim();
+    data.archive = ''; data.gdrive = '';
+  }
+
+  db.ref('videos').push(data).then(() => {
+    closeUpload();
+    ['videoTitle','videoThumb','videoStreamable','videoArchive','videoJumpshare','videoGdrive','videoDesc'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    alert('✅ ভিডিও সফলভাবে যোগ হয়েছে!');
+  }).catch(err => { alert('❌ সমস্যা: '+err.message); });
+}
+
+// HTML5 Player Controls
+function formatTime(s) {
+  if(isNaN(s)) return '0:00';
+  const m = Math.floor(s/60);
+  const sec = Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+const video = document.getElementById('html5Video');
+const seekBar = document.getElementById('seekBar');
+const seekFill = document.getElementById('seekFill');
+const timeDisplay = document.getElementById('timeDisplay');
+const playPauseBtn = document.getElementById('playPauseBtn');
+
+video.addEventListener('timeupdate', () => {
+  if(!video.duration) return;
+  const pct = (video.currentTime / video.duration) * 100;
+  seekBar.value = pct;
+  seekFill.style.width = pct + '%';
+  timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+});
+
+video.addEventListener('play', () => { playPauseBtn.textContent = '⏸'; });
+video.addEventListener('pause', () => { playPauseBtn.textContent = '▶'; });
+video.addEventListener('ended', () => { playPauseBtn.textContent = '▶'; });
+
+seekBar.addEventListener('input', () => {
+  if(!video.duration) return;
+  video.currentTime = (seekBar.value / 100) * video.duration;
+  seekFill.style.width = seekBar.value + '%';
+});
+
+function togglePlay() {
+  if(video.paused) video.play(); else video.pause();
+}
+
+function skipVideo(sec) {
+  video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + sec));
+}
+
+function setVolume(val) {
+  video.volume = val;
+}
+
+function setSpeed(val) {
+  video.playbackRate = parseFloat(val);
+}
+
+function toggleFullscreen() {
+  const wrap = document.getElementById('html5PlayerWrap');
+  if(document.fullscreenElement) {
+    document.exitFullscreen();
+  } else if(wrap.requestFullscreen) {
+    wrap.requestFullscreen();
+  } else if(wrap.webkitRequestFullscreen) {
+    wrap.webkitRequestFullscreen();
+  }
+}
+
+// Close modal on backdrop click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if(e.target===this) {
+      this.classList.remove('open');
+      if(this.id==='videoPlayerModal') {
+        document.getElementById('videoPlayerIframe').src='';
+        const v = document.getElementById('html5Video');
+        v.pause(); v.src='';
+      }
+      if(this.id==='commentModal') currentVideoId = null;
+    }
+  });
+});
+
+// Enter key for password
+document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+  if(e.key==='Enter') checkPassword();
+});
+
+// Enter key for comment
+document.getElementById('commentInput').addEventListener('keypress', function(e) {
+  if(e.key==='Enter') addComment();
+});
+
+// ===== EXIT INTENT POPUNDER =====
+let exitAdShown = false;
+
+// মোবাইলে: পেজ ছেড়ে যাওয়ার সময়
+document.addEventListener('visibilitychange', function() {
+  if(document.visibilityState === 'hidden' && !exitAdShown) {
+    exitAdShown = true;
+    window.open(DIRECT_LINK, '_blank');
+    // ৩০ সেকেন্ড পর আবার দেখাতে পারবে
+    setTimeout(() => { exitAdShown = false; }, 30000);
+  }
+});
+
+// ডেস্কটপে: মাউস উপরে গেলে
+document.addEventListener('mouseleave', function(e) {
+  if(e.clientY <= 0 && !exitAdShown) {
+    exitAdShown = true;
+    window.open(DIRECT_LINK, '_blank');
+    setTimeout(() => { exitAdShown = false; }, 30000);
+  }
+});
+ — শুধু উপরে আনো, auto play/click নয়
+window.addEventListener('load', () => {
+  const params = new URLSearchParams(window.location.search);
+  const vid = params.get('v');
+  if(vid) {
+    setTimeout(() => {
+      const card = document.getElementById('card-'+vid);
+      if(card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1500);
+  }
+});
+</script>
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <a href="#" class="active" onclick="filterCat('সব',null);return false;">
+    <span>🏠</span>HOME
+  </a>
+  <a href="#" onclick="document.getElementById('searchInput').focus();return false;">
+    <span>🔍</span>SEARCH
+  </a>
+  <a href="#" class="live-btn">
+    <span>🔴</span>LIVE
+  </a>
+  <a href="https://t.me/" target="_blank">
+    <span>📢</span>CHANNEL
+  </a>
+</div>
+</body>
+</html>
